@@ -138,6 +138,17 @@ type StructField struct {
 	Tag    Tag
 }
 
+func (s Struct) Field(index int) StructField {
+	field := s.Type.Field(index)
+	return StructField{
+		StructField: field,
+		Parent:      s,
+		Index:       index,
+		Type:        field.Type,
+		Value:       s.Value.Field(index),
+		Tag:         field.Tag,
+	}
+}
 func UnwrapType(t Type) (u Type) {
 	u = t
 	for u.Kind() == kind.Ptr {
