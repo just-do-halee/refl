@@ -12,6 +12,14 @@ type Value = reflect.Value
 type Tag = reflect.StructTag
 type Kind = reflect.Kind
 
+func TypeOf(i any) Type {
+	return reflect.TypeOf(i)
+}
+
+func ValueOf(i any) Value {
+	return reflect.ValueOf(i)
+}
+
 func IsBothType(a, b any) bool {
 	if _, ok := a.(Type); ok {
 		if _, ok := b.(Type); ok {
